@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#090d16"/>
+  <rect x="180" y="30" width="240" height="340" rx="8" fill="#ffffff"/>
+  <rect x="200" y="50" width="200" height="40" fill="#1e293b" rx="4"/>
+  <rect x="200" y="105" width="80" height="10" fill="#00f0ff" rx="2"/>
+  <rect x="200" y="125" width="180" height="6" fill="#cbd5e1" rx="2"/>
+  <rect x="200" y="140" width="160" height="6" fill="#cbd5e1" rx="2"/>
+  <rect x="200" y="155" width="175" height="6" fill="#cbd5e1" rx="2"/>
+  <rect x="200" y="180" width="80" height="10" fill="#a855f7" rx="2"/>
+  <rect x="200" y="200" width="180" height="6" fill="#cbd5e1" rx="2"/>
+  <rect x="200" y="215" width="150" height="6" fill="#cbd5e1" rx="2"/>
+  <rect x="200" y="240" width="80" height="10" fill="#00ff9d" rx="2"/>
+  <rect x="200" y="260" width="180" height="6" fill="#cbd5e1" rx="2"/>
+  <text x="300" y="390" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">ATS Optimized Executive Resume Layout</text>
+</svg>

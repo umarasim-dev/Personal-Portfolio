@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#0d111a"/>
+  <rect x="20" y="80" width="560" height="240" rx="16" fill="url(#bGrad)" stroke="#00f0ff" stroke-width="2"/>
+  <defs>
+    <linearGradient id="bGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <text x="300" y="180" font-family="system-ui, sans-serif" font-size="28" font-weight="extrabold" fill="#ffffff" text-anchor="middle">Corporate LinkedIn Banner</text>
+  <text x="300" y="220" font-family="system-ui, sans-serif" font-size="16" fill="#00f0ff" text-anchor="middle">Muhammad Umar Asim • Developer &amp; Graphic Designer</text>
+</svg>

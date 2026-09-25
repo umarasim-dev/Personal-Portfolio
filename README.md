@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Muhammad Umar Asim — Full-Stack Portfolio Website
 
-## Getting Started
+A modern, production-ready, full-stack personal portfolio website for **Muhammad Umar Asim**, Frontend Web Developer & Graphic Designer.
 
-First, run the development server:
+Built with **Next.js 14 App Router**, **React**, **TypeScript**, **Tailwind CSS**, **Zod**, **Supabase PostgreSQL**, and deployable to **Vercel**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Key Features
+
+* **Frontend Web Developer Focus**: Showcases core skills (*HTML5, CSS3, Tailwind CSS, JavaScript, Bootstrap, React, Next.js, Figma*).
+* **Graphic Design Gallery**: Dedicated visual showcase with category filtering (*Logos, YouTube Thumbnails, Banners, Flyers, Business Cards, CV Designs, Presentations*) and interactive Lightbox modal.
+* **Full-Stack Contact Form**: Secure submission validated with Zod on both client and server sides, anti-spam honeypot protection, and direct insertion into Supabase PostgreSQL.
+* **Optional Resend Email Integration**: Automatically emails notifications upon form submission if `RESEND_API_KEY` is provided.
+* **Theme System**: Dark and Light mode toggling with system preference recognition.
+* **Responsive & Accessible**: 100% responsive across 320px mobile to 4K desktop screens.
+
+---
+
+## 🗄️ Database Setup (Supabase PostgreSQL)
+
+1. Create a free account on [Supabase](https://supabase.com/).
+2. Create a new project.
+3. In your Supabase Dashboard, go to **SQL Editor** and run the following script:
+
+```sql
+-- Create the contact_messages table
+create table public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  subject text not null,
+  message text not null,
+  created_at timestamptz not null default now()
+);
+
+-- Enable Row Level Security (RLS)
+alter table public.contact_messages enable row level security;
+
+-- Allow anonymous & server insertions
+create policy "Allow server insert into contact_messages"
+  on public.contact_messages
+  for insert
+  with check (true);
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Retrieve your API keys from **Project Settings > API**:
+   - `Project URL` -> `NEXT_PUBLIC_SUPABASE_URL`
+   - `anon public key` -> `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `service_role secret key` -> `SUPABASE_SERVICE_ROLE_KEY`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔑 Environment Variables Setup
 
-## Learn More
+Create a `.env.local` file in the root directory (copied from `.env.example`):
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key-here
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Optional Email Notification
+RESEND_API_KEY=re_123456789_your_resend_api_key
+CONTACT_EMAIL=contact@muhammadumarasim.dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Production URL
+NEXT_PUBLIC_SITE_URL=https://your-portfolio.vercel.app
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💻 Local Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+3. Open `http://localhost:3000` in your browser.
+
+---
+
+## 🌐 Deploying to Vercel
+
+1. **Push your code to GitHub**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit of Muhammad Umar Asim Portfolio"
+   git remote add origin https://github.com/YourUsername/portfolio.git
+   git push -u origin main
+   ```
+
+2. **Import into Vercel**:
+   - Go to [Vercel Dashboard](https://vercel.com/) and click **Add New Project**.
+   - Import your GitHub repository.
+
+3. **Configure Environment Variables in Vercel**:
+   - Under **Environment Variables**, add:
+     - `NEXT_PUBLIC_SUPABASE_URL`
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+     - `SUPABASE_SERVICE_ROLE_KEY`
+     - `RESEND_API_KEY` (Optional)
+     - `CONTACT_EMAIL` (Optional)
+
+4. **Deploy**:
+   - Click **Deploy**. Vercel will build and deploy the Next.js application automatically.
+
+---
+
+## 🧪 Testing Contact Form Flow
+
+1. Fill out the Contact Form at the bottom of the page.
+2. Click **Send Message**.
+3. You will see a success message: `Message sent successfully! I'll get back to you as soon as possible.`
+4. Log into your Supabase Dashboard > **Table Editor** > `contact_messages` to view the saved record.
