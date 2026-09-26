@@ -258,38 +258,115 @@ export const PROJECTS_DATA: Project[] = [
 export const GRAPHIC_DESIGNS: DesignItem[] = [
   {
     id: "design-1",
-    title: "Modern Tech Logo Design",
+    title: "Tech Company Logo",
     category: "Logos",
-    image: "/designs/logo_tech.svg",
-    description: "Vector brand logo identity designed for a software solutions company."
+    image: "/designs/logo_tech.png",
+    description: "Brand identity logo design."
   },
   {
     id: "design-2",
-    title: "Creative Agency Social Post",
-    category: "Social Media",
-    image: "/designs/social_post.svg",
-    description: "High-engagement social media promotional graphic for Instagram & Facebook."
+    title: "Chenab Group Logo",
+    category: "Logos",
+    image: "/designs/logo_Chenab.png",
+    description: "Logo design for Chenab Group."
   },
   {
     id: "design-3",
-    title: "High-CTR YouTube Gaming Thumbnail",
-    category: "YouTube Thumbnails",
-    image: "/designs/thumbnail.svg",
-    description: "Vibrant YouTube video thumbnail with bold typography and custom background contrast."
+    title: "Zyreb Logo",
+    category: "Logos",
+    image: "/designs/logo_zyreb.png",
+    description: "Brand identity logo design for Zyreb."
   },
   {
     id: "design-4",
-    title: "Corporate LinkedIn Header Banner",
-    category: "Banners",
-    image: "/designs/banner.svg",
-    description: "Professional social header banner created for executive LinkedIn profiles."
+    title: "Social Media Post 1",
+    category: "Social Media",
+    image: "/designs/social_post.jpg",
+    description: "Social media campaign graphic."
   },
   {
     id: "design-5",
-    title: "Business Event Promotional Flyer",
+    title: "Social Media Post 2",
+    category: "Social Media",
+    image: "/designs/social_post1.jpg",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-6",
+    title: "Social Media Post 3",
+    category: "Social Media",
+    image: "/designs/social_post2.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-7",
+    title: "Social Media Post 4",
+    category: "Social Media",
+    image: "/designs/social_post3.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-8",
+    title: "Social Media Post 5",
+    category: "Social Media",
+    image: "/designs/social_post4.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-9",
+    title: "Social Media Post 6",
+    category: "Social Media",
+    image: "/designs/social_post5.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-10",
+    title: "Social Media Post 7",
+    category: "Social Media",
+    image: "/designs/social_post6.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-11",
+    title: "Social Media Post 8",
+    category: "Social Media",
+    image: "/designs/social_post7.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-12",
+    title: "Social Media Post 9",
+    category: "Social Media",
+    image: "/designs/social_post8.png",
+    description: "Social media campaign graphic."
+  },
+  {
+    id: "design-13",
+    title: "YouTube Thumbnail",
+    category: "YouTube Thumbnails",
+    image: "/designs/thumbnail.png",
+    description: "Custom YouTube video thumbnail."
+  },
+  {
+    id: "design-14",
+    title: "Promotional Banner 1",
+    category: "Banners",
+    image: "/designs/banner.png",
+    description: "Promotional banner design."
+  },
+  {
+    id: "design-15",
+    title: "Promotional Banner 2",
+    category: "Banners",
+    image: "/designs/banner1.png",
+    description: "Promotional banner design."
+  },
+  {
+    id: "design-16",
+    title: "Promotional Flyer",
     category: "Flyers",
-    image: "/designs/flyer.svg",
-    description: "Print-ready marketing flyer for corporate conferences and workshops."
+    image: "/designs/flyer.png",
+    description: "Promotional flyer design."
   },
   {
     id: "design-6",
