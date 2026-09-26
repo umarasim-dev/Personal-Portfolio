@@ -39,59 +39,71 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 3. Insert into Supabase PostgreSQL Table 'contact_messages'
-    const supabase = getSupabaseServerClient();
-    if (supabase) {
-      const { error: dbError } = await supabase.from('contact_messages').insert([
-        {
-          name,
-          email,
-          subject,
-          message,
-        },
-      ]);
+    // 3. Email delivery is required; do not report success without it.
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const recipientEmail = process.env.CONTACT_EMAIL || 'umarasim841@gmail.com';
+    const senderEmail = process.env.CONTACT_FROM_EMAIL || 'onboarding@resend.dev';
 
-      if (dbError) {
-        console.error('[Supabase DB Error]:', dbError);
-        // If DB insertion fails, throw error to be handled gracefully
+    if (!resendApiKey) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Email delivery is not configured. Please contact me directly at umarasim841@gmail.com.',
+        },
+        { status: 503 }
+      );
+    }
+
+    try {
+      const resend = new Resend(resendApiKey);
+      const { error: resendError } = await resend.emails.send({
+        from: `Portfolio Contact Form <${senderEmail}>`,
+        to: [recipientEmail],
+        replyTo: email,
+        subject: `Portfolio Contact: ${subject}`,
+        text: `New contact message from ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
+      });
+
+      if (resendError) {
+        console.error('[Resend Email Error]:', resendError);
         return NextResponse.json(
           {
             success: false,
-            message: 'Unable to save your message to the database right now. Please try again.',
+            message: 'Email delivery failed. Please try again or contact me directly at umarasim841@gmail.com.',
           },
-          { status: 500 }
+          { status: 502 }
         );
       }
-    } else {
-      console.warn('[Contact API] Supabase environment variables not set. Form received locally.');
+    } catch (resendError) {
+      console.error('[Resend Email Error]:', resendError);
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Email delivery failed. Please try again or contact me directly at umarasim841@gmail.com.',
+        },
+        { status: 502 }
+      );
     }
 
-    // 4. Optional Email Notification via Resend
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_EMAIL || 'umarasim841@gmail.com';
+    // 4. Save a copy in Supabase when database configuration is available.
+    try {
+      const supabase = getSupabaseServerClient();
+      if (supabase) {
+        const { error: dbError } = await supabase.from('contact_messages').insert([
+          {
+            name,
+            email,
+            subject,
+            message,
+          },
+        ]);
 
-    if (resendApiKey) {
-      try {
-        const resend = new Resend(resendApiKey);
-        await resend.emails.send({
-          from: 'Portfolio Contact Form <onboarding@resend.dev>',
-          to: [recipientEmail],
-          subject: `Portfolio Contact: ${subject}`,
-          html: `
-            <h2>New Contact Message from Portfolio</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Message:</strong></p>
-            <blockquote style="background: #f4f4f4; padding: 12px; border-left: 4px solid #00f0ff;">
-              ${message.replace(/\n/g, '<br/>')}
-            </blockquote>
-          `,
-        });
-      } catch (resendError) {
-        // Log Resend error but do NOT fail the contact submission if DB saved it
-        console.error('[Resend Email Warning]:', resendError);
+        if (dbError) {
+          console.error('[Supabase DB Error]:', dbError);
+        }
       }
+    } catch (dbError) {
+      console.error('[Supabase DB Error]:', dbError);
     }
 
     return NextResponse.json(
