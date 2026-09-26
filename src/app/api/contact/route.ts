@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
 
     // 4. Optional Email Notification via Resend
     const resendApiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_EMAIL || 'contact@muhammadumarasim.dev';
+    const recipientEmail = process.env.CONTACT_EMAIL || 'umarasim841@gmail.com';
 
     if (resendApiKey) {
       try {
