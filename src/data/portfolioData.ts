@@ -229,7 +229,7 @@ export const PROJECTS_DATA: Project[] = [
     fullDescription: "A clean multi-page educational web project showcasing campus news, course directory, faculty listings, and student admissions info structured with modern HTML5 and CSS3.",
     technologies: ["HTML5", "CSS3", "Responsive Layout", "Flexbox & Grid"],
     image: "/projects/university.svg",
-    githubUrl: "https://github.com/umarasim-dev",
+    githubUrl: "https://github.com/umarasim-dev/university-website",
     featured: true,
     details: [
       "Structured semantic HTML5 accessibility layout",
